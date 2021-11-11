@@ -1,7 +1,7 @@
 {
-  "name": "NextJS Prismic Blog Starter",
-  "short_name": "Blog",
-  "description": "A blog starter template using NextJS and Prismic CMS",
+  "name": "Ferox Lustrum",
+  "short_name": "Ferox Lustrum",
+  "description": "Alle feiten bij de hand over het Ferox lustrum weekend",
   "start_url": "/",
   "theme_color": "#181818",
   "background_color": "#333",

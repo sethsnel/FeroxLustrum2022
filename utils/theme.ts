@@ -70,7 +70,7 @@ const theme = makeTheme({
     medium: "'Times New Roman', 'Lato', 'Inter', sans-serif",
     heading: "'Times New Roman', 'Lato', 'Inter', sans-serif",
     code: "'Fira Code', monospace",
-    title: "'Lato', 'Inter', sans-serif",
+    title: "'Times New Roman', 'Lato', 'Inter', sans-serif",
   },
   fontSizes: [12, 14, 16, 20, 24, 32, 48, 64, 72],
   fontWeights: {

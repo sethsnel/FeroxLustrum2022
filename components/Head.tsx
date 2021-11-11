@@ -23,7 +23,7 @@ const Head = ({
   //const twitterHandle = '@iamsainikhil12'
   const siteName = 'Ferox Lustrumweekend'
   const pageTitle = `Ferox Lustrum | ${title}`
-  const metaDescription = description || 'omscchrijving'
+  const metaDescription = description || 'Ferox Lustrumweekend'
   return (
     <>
       <GoogleFonts href='https://fonts.googleapis.com/css2?family=Damion&family=Fira+Code&family=Lato:ital,wght@0,400;0,700;1,300&display=swap' />

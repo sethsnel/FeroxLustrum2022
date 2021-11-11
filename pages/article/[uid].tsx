@@ -23,8 +23,8 @@ type ArticlePage = {
   uid: string
   tags: string[]
   article: IArticle
-  author: IAuthor
-  articles: IPage<IArticle>[]
+  author?: IAuthor
+  articles?: IPage<IArticle>[]
 }
 
 export default function Article({
@@ -197,12 +197,14 @@ export default function Article({
 
         {author && <Author author={author} />}
 
-        <RelatedArticles
-          uid={uid}
-          categories={article.categories}
-          tags={tags}
-          related={articles}
-        />
+        {articles && (
+          <RelatedArticles
+            uid={uid}
+            categories={article.categories}
+            tags={tags}
+            related={articles}
+          />
+        )}
 
         {/* <p style={{ textAlign: 'center' }}>
           <button
@@ -260,14 +262,24 @@ export async function getStaticProps({ params, preview = null, previewData }) {
   )
   // get authorID
   const authorId = await article?.author?.id
+  console.info(authorId)
   // fetch author data based on authorId
-  const { data: author } = await client.getByID(authorId, ref ? { ref } : null)
-  const { results: articles } = await client.query(
-    Prismic.Predicates.at('document.type', 'article')
-  )
+  if (authorId) {
+    const { data: author } = await client.getByID(
+      authorId,
+      ref ? { ref } : null
+    )
+    const { results: articles } = await client.query(
+      Prismic.Predicates.at('document.type', 'article')
+    )
+
+    return {
+      props: { uid, tags, article, author, articles, preview },
+    }
+  }
 
   return {
-    props: { uid, tags, article, author, articles, preview },
+    props: { uid, tags, article, preview },
   }
 }
 

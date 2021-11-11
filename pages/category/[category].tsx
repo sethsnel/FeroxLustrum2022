@@ -42,11 +42,13 @@ export async function getStaticPaths() {
       results.reduce((acc, curr) => acc.concat(curr.data.categories), [])) ||
     []
 
-  const paths = categories.map(({ category }) => ({
-    params: {
-      category: category.slug,
-    },
-  }))
+  const paths = categories
+    .filter(({ category }) => category?.slug)
+    .map(({ category }) => ({
+      params: {
+        category: category.slug,
+      },
+    }))
 
   return {
     paths,

@@ -1,8 +1,8 @@
-import {client} from '../../prismic-configuration'
-import Prismic from 'prismic-javascript'
-import {Layout, Caption, Listing} from './../../components'
+import { client } from '../../prismic-configuration'
+import Prismic from '@prismicio/client'
+import { Layout, Caption, Listing } from './../../components'
 
-export default function Tag({articles, tag}) {
+export default function Tag({ articles, tag }) {
   return (
     <Layout page='Tag' title={tag}>
       <Caption name={tag} type='tag' />
@@ -11,9 +11,9 @@ export default function Tag({articles, tag}) {
   )
 }
 
-export async function getStaticProps({params}) {
-  const {tag} = params
-  const {results} = await client.query(
+export async function getStaticProps({ params }) {
+  const { tag } = params
+  const { results } = await client.query(
     Prismic.Predicates.any('document.tags', [tag])
   )
   return {
@@ -25,11 +25,12 @@ export async function getStaticProps({params}) {
 }
 
 export async function getStaticPaths() {
-  const {results} = await client.query(
+  const { results } = await client.query(
     Prismic.Predicates.at('document.type', 'article')
   )
 
-  const tags = results && results.reduce((acc, curr) => acc.concat(curr.tags), []) || []
+  const tags =
+    (results && results.reduce((acc, curr) => acc.concat(curr.tags), [])) || []
 
   const paths = tags.map((tag) => ({
     params: {

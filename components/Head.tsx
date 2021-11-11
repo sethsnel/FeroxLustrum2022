@@ -8,7 +8,7 @@ export type HeadProps = {
   page: string
   title: string
   description: string
-  image: string
+  image?: string
 }
 
 const Head = ({
@@ -20,11 +20,10 @@ const Head = ({
   image,
 }: HeadProps) => {
   const prismicRepo = process.env.NEXT_PUBLIC_PRISMIC_REPO
-  const twitterHandle = '@iamsainikhil12'
-  const siteName = 'NextJS Prismic Blog Starter'
-  const pageTitle = `${title} | ${page} | ${siteName}`
-  const metaDescription =
-    description || 'A blog starter template using NextJS and Prismic CMS'
+  //const twitterHandle = '@iamsainikhil12'
+  const siteName = 'Ferox Lustrumweekend'
+  const pageTitle = `Ferox Lustrum | ${title}`
+  const metaDescription = description || 'omscchrijving'
   return (
     <>
       <GoogleFonts href='https://fonts.googleapis.com/css2?family=Damion&family=Fira+Code&family=Lato:ital,wght@0,400;0,700;1,300&display=swap' />
@@ -39,8 +38,8 @@ const Head = ({
         />
         <meta name='author' content='Sai Nikhil'></meta>
         {/* Twitter */}
-        <meta name='twitter:card' content='summary_large_image' key='twcard' />
-        <meta name='twitter:creator' content={twitterHandle} key='twhandle' />
+        {/* <meta name='twitter:card' content='summary_large_image' key='twcard' />
+        <meta name='twitter:creator' content={twitterHandle} key='twhandle' /> */}
         {/* Open Graph */}
         <meta property='og:type' content='website' key='ogtype' />
         <meta property='og:url' content={pathUrl} key='ogurl' />
@@ -79,7 +78,8 @@ const Head = ({
         <script
           async
           defer
-          src={`https://static.cdn.prismic.io/prismic.js?new=true&repo=${prismicRepo}`}></script>
+          src={`https://static.cdn.prismic.io/prismic.js?new=true&repo=${prismicRepo}`}
+        ></script>
         {children}
       </NextHead>
     </>

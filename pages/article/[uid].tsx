@@ -1,7 +1,7 @@
 import { Fragment, useState } from 'react'
 import { client } from '../../prismic-configuration'
 import { RichText } from 'prismic-reactjs'
-import Prismic from 'prismic-javascript'
+import Prismic from '@prismicio/client'
 import {
   Layout,
   SliceMachine,
@@ -27,7 +27,13 @@ type ArticlePage = {
   articles: IPage<IArticle>[]
 }
 
-export default function Article({ uid, tags, article, author, articles }: ArticlePage) {
+export default function Article({
+  uid,
+  tags,
+  article,
+  author,
+  articles,
+}: ArticlePage) {
   const { asPath: URL } = useRouter()
   const [showComments, setShowComments] = useState(false)
   const [showShareIcons, setShowShareIcons] = useState(false)
@@ -53,7 +59,8 @@ export default function Article({ uid, tags, article, author, articles }: Articl
         title={RichText.asText(article.title)}
         description={RichText.asText(article.excerpt)}
         image={article.article_image.url}
-        pathUrl={URL}>
+        pathUrl={URL}
+      >
         <Themed.h1 sx={{ textAlign: 'center', mb: 3 }}>
           {RichText.asText(article.title)}
         </Themed.h1>
@@ -66,19 +73,24 @@ export default function Article({ uid, tags, article, author, articles }: Articl
             alignItems: 'center',
             justifyContent: 'center',
             position: 'relative',
-          }}>
+          }}
+        >
           <Themed.em
             title={formatDate(article.created)}
-            aria-label={formatDate(article.created)}>
+            aria-label={formatDate(article.created)}
+          >
             {formatDate(article.created)}
           </Themed.em>
-          <Themed.em
-            sx={{ mx: 4 }}
-            title='Time to read the article'
-            aria-label='Time to read the article'>
-            <FiClock style={{ marginBottom: '-0.15rem' }} />
-            &nbsp;{article.read_time}&nbsp;min read
-          </Themed.em>
+          {article.read_time ? (
+            <Themed.em
+              sx={{ mx: 4 }}
+              title='Time to read the article'
+              aria-label='Time to read the article'
+            >
+              <FiClock style={{ marginBottom: '-0.15rem' }} />
+              &nbsp;{article.read_time}&nbsp;min read
+            </Themed.em>
+          ) : undefined}
           <p sx={{ m: 0 }}>
             <FiShare2
               sx={{
@@ -105,7 +117,8 @@ export default function Article({ uid, tags, article, author, articles }: Articl
                     ml: '2.5rem',
                   },
                 }}
-                onMouseLeave={toggleShareIcons}>
+                onMouseLeave={toggleShareIcons}
+              >
                 <Share
                   articleURL={URL}
                   articleName={RichText.asText(article.title)}
@@ -124,14 +137,21 @@ export default function Article({ uid, tags, article, author, articles }: Articl
             justifyContent: 'center',
             alignItems: 'center',
             mt: 2,
-          }}>
-          {article.categories && article.categories.map(({ category }, index) => {
-            return (
-              category?.slug && (
-                <Chip name={category.slug} slug={category.slug} type='category' key={index} />
+          }}
+        >
+          {article.categories &&
+            article.categories.map(({ category }, index) => {
+              return (
+                category?.slug && (
+                  <Chip
+                    name={category.slug}
+                    slug={category.slug}
+                    type='category'
+                    key={index}
+                  />
+                )
               )
-            )
-          })}
+            })}
         </div>
 
         <Themed.p
@@ -140,7 +160,8 @@ export default function Article({ uid, tags, article, author, articles }: Articl
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
-          }}>
+          }}
+        >
           {RichText.asText(article.excerpt)}
         </Themed.p>
 
@@ -149,9 +170,11 @@ export default function Article({ uid, tags, article, author, articles }: Articl
         {/* slices */}
         <SliceMachine slices={article.body} />
 
-        <Themed.em sx={{ color: 'gray' }}>
-          This article was last updated on {formatDate(article.modified)}
-        </Themed.em>
+        {article.modified ? (
+          <Themed.em sx={{ color: 'gray' }}>
+            Bijgewerkt op {formatDate(article.modified)}
+          </Themed.em>
+        ) : undefined}
 
         {/* tags */}
         <div
@@ -161,10 +184,12 @@ export default function Article({ uid, tags, article, author, articles }: Articl
             justifyContent: 'flex-start',
             alignItems: 'center',
             my: 2,
-          }}>
-          {tags && tags.map((tag, index) => {
-            return <Chip name={tag} slug={tag} type='tag' key={index} />
-          })}
+          }}
+        >
+          {tags &&
+            tags.map((tag, index) => {
+              return <Chip name={tag} slug={tag} type='tag' key={index} />
+            })}
         </div>
 
         {/* Share */}
@@ -179,7 +204,7 @@ export default function Article({ uid, tags, article, author, articles }: Articl
           related={articles}
         />
 
-        <p style={{ textAlign: 'center' }}>
+        {/* <p style={{ textAlign: 'center' }}>
           <button
             onClick={toggleComments}
             sx={{
@@ -199,13 +224,14 @@ export default function Article({ uid, tags, article, author, articles }: Articl
                 color: 'accent',
                 backgroundColor: 'shade1',
               },
-            }}>
+            }}
+          >
             {showComments ? 'Hide' : 'Show'} Comments
           </button>
-        </p>
+        </p> */}
 
         {/* Disqus comments */}
-        {showComments ? (
+        {/* {showComments ? (
           <div sx={{ mt: 4 }}>
             <DisqusComments
               slug={uid}
@@ -213,22 +239,20 @@ export default function Article({ uid, tags, article, author, articles }: Articl
               pathname={URL}
             />
           </div>
-        ) : null}
+        ) : null} */}
       </Layout>
     </Fragment>
   )
 }
 
-export async function getStaticProps({
-  params,
-  preview = null,
-  previewData,
-}) {
+export async function getStaticProps({ params, preview = null, previewData }) {
   const { uid } = params
+
   let ref = undefined
   if (previewData) {
     ref = previewData.ref
   }
+
   const { tags, data: article } = await client.getByUID(
     'article',
     uid,
@@ -252,16 +276,18 @@ export async function getStaticPaths() {
     Prismic.Predicates.at('document.type', 'article')
   )
 
-  const paths = results && results.map((article) => {
-    return {
-      params: {
-        uid: article.uid,
+  const paths =
+    results &&
+    results.map((article) => {
+      return {
+        params: {
+          uid: article.uid,
+        },
       }
-    }
-  })
+    })
 
   return {
     paths,
-    fallback: false
+    fallback: false,
   }
 }

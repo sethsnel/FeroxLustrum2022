@@ -1,28 +1,24 @@
-import { Themed } from "theme-ui"
+import { Themed } from 'theme-ui'
 
 interface CaptionProps {
   name: string
   type: string
 }
 
-const Caption = ({name, type}: CaptionProps) => {
+const Caption = ({ name, type }: CaptionProps) => {
   return (
-    <div style={{textAlign: 'center'}}>
+    <div style={{ textAlign: 'center' }}>
       <Themed.p
         sx={{
           fontFamily: 'light',
-          fontSize: [2, 3, 4],
-          textAlign: 'center',
+          textAlign: 'right',
           mt: 0,
-        }}>
-        {type === 'articles' ? (
+        }}
+      >
+        {type === 'articles' ? undefined : (
+          //   <Themed.em sx={{ fontSize: '3em' }}>Ferox Lustrumweekend</Themed.em>
           <Themed.em>
-            Dive into many interesting articles related to Web Development,
-            Software Tools, Tips&nbsp;&&nbsp;Tricks,&nbsp;etc.
-          </Themed.em>
-        ) : (
-          <Themed.em>
-            The articles related to <strong>{name}</strong> {type}.
+            Gerelateerd aan: <strong>{name}</strong> {type}.
           </Themed.em>
         )}
       </Themed.p>

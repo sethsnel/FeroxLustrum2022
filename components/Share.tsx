@@ -1,17 +1,20 @@
-import {FiShare2} from 'react-icons/fi'
+import { FiShare2 } from 'react-icons/fi'
 import { Themed } from 'theme-ui'
 
 import Icon from './Icon'
 import siteUrl from '../utils/siteUrl'
 
 interface ShareProps {
-  articleURL: string,
-  articleName: string,
-  hideShareText?: boolean,
+  articleURL: string
+  articleName: string
+  hideShareText?: boolean
 }
 
-
-const Share = ({articleURL, articleName, hideShareText = false}: ShareProps) => {
+const Share = ({
+  articleURL,
+  articleName,
+  hideShareText = false,
+}: ShareProps) => {
   const URL = siteUrl(articleURL)
   const sharePlatforms = [
     {
@@ -33,32 +36,33 @@ const Share = ({articleURL, articleName, hideShareText = false}: ShareProps) => 
   ]
 
   return (
-    <div sx={{mt: hideShareText ? 2 : 4}}>
+    <div sx={{ mt: hideShareText ? 2 : 4 }}>
       {hideShareText ? null : (
-        <Themed.h3 sx={{textAlign: 'center'}}>
-          Share
+        <Themed.h3 sx={{ textAlign: 'center' }}>
+          Delen
           <FiShare2
-            sx={{mx: 2, mb: -1}}
+            sx={{ mx: 2, mb: -1 }}
             title='Share this article on different platforms.'
           />
         </Themed.h3>
       )}
       <div sx={flexbox}>
-        {sharePlatforms && sharePlatforms.map((platform, index) => {
-          return (
-            <Icon
-              name={platform.name}
-              url={platform.url}
-              style={{
-                color: 'secondary',
-                fontSize: hideShareText ? [3] : [3, 4, 5],
-                mx: 3,
-                my: 1,
-              }}
-              key={index}
-            />
-          )
-        })}
+        {sharePlatforms &&
+          sharePlatforms.map((platform, index) => {
+            return (
+              <Icon
+                name={platform.name}
+                url={platform.url}
+                style={{
+                  color: 'secondary',
+                  fontSize: hideShareText ? [3] : [3, 4, 5],
+                  mx: 3,
+                  my: 1,
+                }}
+                key={index}
+              />
+            )
+          })}
       </div>
     </div>
   )

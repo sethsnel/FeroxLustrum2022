@@ -1,16 +1,16 @@
-import { default as NextLink } from "next/link"
-import Image from "next/image"
-import { RichText } from "prismic-reactjs"
-import styled from "@emotion/styled"
-import { FiClock } from "react-icons/fi"
+import { default as NextLink } from 'next/link'
+import Image from 'next/image'
+import { RichText } from 'prismic-reactjs'
+import styled from '@emotion/styled'
+import { FiClock } from 'react-icons/fi'
 
-import { hrefResolver, linkResolver } from "./../prismic-configuration"
-import formatDate from "../utils/formatDate";
-import { trackGAEvent } from "../utils/googleAnalytics"
-import { useTheme } from "../utils/theme"
-import { IArticle } from "../schemas"
+import { hrefResolver, linkResolver } from './../prismic-configuration'
+import formatDate from '../utils/formatDate'
+import { trackGAEvent } from '../utils/googleAnalytics'
+import { useTheme } from '../utils/theme'
+import { IArticle } from '../schemas'
 
-import Chip from "./Chip";
+import Chip from './Chip'
 
 interface ListingProps {
   articles: {
@@ -47,182 +47,187 @@ const Listing = ({ articles }: ListingProps) => {
 
   return (
     <GridLayout>
-      {articles && articles.map((article) => (
-        <ArticleCard
-          aria-label={`Read article ${article.uid}`}
-          title={article.uid}
-          key={article.uid}
-        >
-          {article.data.article_image &&
-          article.data.article_image?.dimensions ? (
-            <div style={{ overflow: "hidden" }}>
-              <NextLink
-                href={hrefResolver(article)}
-                as={linkResolver(article)}
-                passHref
-              >
-                <a>
-                  <Image
-                    src={article.data.article_image.url}
-                    alt={article.data.article_image.alt}
-                    title={article.data.article_image.alt}
-                    layout="responsive"
-                    width={article.data.article_image.dimensions.width}
-                    height={article.data.article_image.dimensions.height}
-                    className="article-image"
-                  />
-                </a>
-              </NextLink>
-            </div>
-          ) : undefined}
-          <div
-            sx={{
-              px: 3,
-              py: 2,
-
-              "@media (max-width: 30rem)": {
-                px: 3,
-              },
-            }}
+      {articles &&
+        articles.map((article) => (
+          <ArticleCard
+            aria-label={`Read article ${article.uid}`}
+            title={article.uid}
+            key={article.uid}
           >
-            <h2
-              sx={{
-                m: 0,
-                pt: 0,
-                minHeight: "5rem",
-                fontSize: [2, 3],
-                "@media (max-width: 30rem)": {
-                  pt: 0,
-                  height: "auto",
-                },
-              }}
-            >
-              <NextLink
-                href={hrefResolver(article)}
-                as={linkResolver(article)}
-                passHref
-              >
-                <a
-                  sx={{
-                    color: "inherit",
-                    textDecoration: "none",
-                    ":hover,:focus": {
-                      color: "secondary",
-                      textDecoration: "underline",
-                      cursor: "pointer",
-                    },
-                  }}
-                  onClick={() =>
-                    trackGAEvent(
-                      "home",
-                      `clicked on ${article.uid} article title`,
-                      "text click"
-                    )
-                  }
-                  rel="noreferrer noopener"
+            {article.data.article_image &&
+            article.data.article_image?.dimensions ? (
+              <div style={{ overflow: 'hidden' }}>
+                <NextLink
+                  href={hrefResolver(article)}
+                  as={linkResolver(article)}
+                  passHref
                 >
-                  {RichText.asText(article.data.title)}
-                </a>
-              </NextLink>
-            </h2>
-            <p
-              sx={{
-                my: 0,
-                fontSize: [1, 2],
-                height: "5.5rem",
-                "@media screen and (max-width: 30rem)": {
-                  height: "auto",
-                },
-              }}
-            >
-              {truncateText(`${RichText.asText(article.data.excerpt)}`)}&nbsp;
-              <NextLink
-                href={hrefResolver(article)}
-                as={linkResolver(article)}
-                passHref
-              >
-                <a
-                  sx={{ variant: "styles.a" }}
-                  aria-label={`Read the article on ${RichText.asText(
-                    article.data.title
-                  )}`}
-                  title={`Read the article on ${RichText.asText(
-                    article.data.title
-                  )}`}
-                  onClick={() =>
-                    trackGAEvent(
-                      "home",
-                      `clicked on ${article.uid} read full article`,
-                      "link click"
-                    )
-                  }
-                  rel="noreferrer noopener"
-                >
-                  Read Full Article
-                </a>
-              </NextLink>
-            </p>
+                  <a>
+                    <Image
+                      src={article.data.article_image.url}
+                      alt={article.data.article_image.alt}
+                      title={article.data.article_image.alt}
+                      layout='responsive'
+                      width={article.data.article_image.dimensions.width}
+                      height={article.data.article_image.dimensions.height}
+                      className='article-image'
+                    />
+                  </a>
+                </NextLink>
+              </div>
+            ) : undefined}
             <div
               sx={{
-                display: "flex",
-                flexFlow: "row wrap",
-                justifyContent: "flex-start",
-                alignItems: "center",
-                margin: "0 auto 0 -0.25rem",
+                px: 3,
+                py: 2,
+
+                '@media (max-width: 30rem)': {
+                  px: 3,
+                },
               }}
             >
-              {article.data.categories &&
-                article.data.categories.map(({ category }, index) => {
-                  return (
-                    category?.slug && (
-                      <Chip
-                        name={category.slug}
-                        slug={category.slug}
-                        type="category"
-                        page="listing"
-                        key={index}
-                        onClick={() =>
-                          trackGAEvent(
-                            "home",
-                            `clicked on ${category.slug}`,
-                            "chip click"
-                          )
-                        }
-                      />
+              <h2
+                sx={{
+                  m: 0,
+                  pt: 0,
+                  minHeight: '5rem',
+                  fontSize: [2, 3],
+                  '@media (max-width: 30rem)': {
+                    pt: 0,
+                    height: 'auto',
+                  },
+                }}
+              >
+                <NextLink
+                  href={hrefResolver(article)}
+                  as={linkResolver(article)}
+                  passHref
+                >
+                  <a
+                    sx={{
+                      color: 'inherit',
+                      textDecoration: 'none',
+                      ':hover,:focus': {
+                        color: 'secondary',
+                        textDecoration: 'underline',
+                        cursor: 'pointer',
+                      },
+                    }}
+                    onClick={() =>
+                      trackGAEvent(
+                        'home',
+                        `clicked on ${article.uid} article title`,
+                        'text click'
+                      )
+                    }
+                    rel='noreferrer noopener'
+                  >
+                    {RichText.asText(article.data.title)}
+                  </a>
+                </NextLink>
+              </h2>
+              <p
+                sx={{
+                  my: 0,
+                  fontSize: [1, 2],
+                  height: '5.5rem',
+                  '@media screen and (max-width: 30rem)': {
+                    height: 'auto',
+                  },
+                }}
+              >
+                {truncateText(`${RichText.asText(article.data.excerpt)}`)}&nbsp;
+                <NextLink
+                  href={hrefResolver(article)}
+                  as={linkResolver(article)}
+                  passHref
+                >
+                  <a
+                    sx={{ variant: 'styles.a' }}
+                    aria-label={`Read the article on ${RichText.asText(
+                      article.data.title
+                    )}`}
+                    title={`Read the article on ${RichText.asText(
+                      article.data.title
+                    )}`}
+                    onClick={() =>
+                      trackGAEvent(
+                        'home',
+                        `clicked on ${article.uid} read full article`,
+                        'link click'
+                      )
+                    }
+                    rel='noreferrer noopener'
+                  >
+                    Lees meer
+                  </a>
+                </NextLink>
+              </p>
+              <div
+                sx={{
+                  display: 'flex',
+                  flexFlow: 'row wrap',
+                  justifyContent: 'flex-start',
+                  alignItems: 'center',
+                  margin: '0 auto 0 -0.25rem',
+                }}
+              >
+                {article.data.categories &&
+                  article.data.categories.map(({ category }, index) => {
+                    return (
+                      category?.slug && (
+                        <Chip
+                          name={category.slug}
+                          slug={category.slug}
+                          type='category'
+                          page='listing'
+                          key={index}
+                          onClick={() =>
+                            trackGAEvent(
+                              'home',
+                              `clicked on ${category.slug}`,
+                              'chip click'
+                            )
+                          }
+                        />
+                      )
                     )
-                  );
-                })}
+                  })}
+              </div>
+              <p
+                sx={{
+                  fontSize: 0,
+                  mb: 1,
+                  py: 1,
+                }}
+              >
+                <em
+                  title={`Article posted on ${formatDate(
+                    article.data.created
+                  )}`}
+                  aria-label={`Article posted on ${formatDate(
+                    article.data.created
+                  )}`}
+                >
+                  {formatDate(article.data.created)}
+                </em>
+
+                {article.data.read_time ? (
+                  <>
+                    <span sx={{ mx: 2, fontSize: '10px' }}>|</span>
+                    <em title='Leestijd' aria-label='Leestijd'>
+                      <FiClock style={{ marginBottom: '-0.15rem' }} />
+                      &nbsp;{article.data.read_time}&nbsp;min read
+                    </em>
+                  </>
+                ) : undefined}
+              </p>
             </div>
-            <p
-              sx={{
-                fontSize: 0,
-                mb: 1,
-                py: 1,
-              }}
-            >
-              <em
-                title={`Article posted on ${formatDate(article.data.created)}`}
-                aria-label={`Article posted on ${formatDate(
-                  article.data.created
-                )}`}
-              >
-                {formatDate(article.data.created)}
-              </em>
-              <span sx={{ mx: 2, fontSize: "10px" }}>|</span>
-              <em
-                title="Time to read the article"
-                aria-label="Time to read the article"
-              >
-                <FiClock style={{ marginBottom: "-0.15rem" }} />
-                &nbsp;{article.data.read_time}&nbsp;min read
-              </em>
-            </p>
-          </div>
-        </ArticleCard>
-      ))}
+          </ArticleCard>
+        ))}
     </GridLayout>
-  );
-};
+  )
+}
 
 /**
  * Truncate the excerpt text based on character count
@@ -230,7 +235,7 @@ const Listing = ({ articles }: ListingProps) => {
  */
 const truncateText = (text: string): string => {
   if (text.length > 75) {
-    return text.slice(0, 75).concat("...")
+    return text.slice(0, 75).concat('...')
   }
   return text
 }

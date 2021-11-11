@@ -1,14 +1,14 @@
-import Prismic from 'prismic-javascript'
+import Prismic from '@prismicio/client'
 
 // Prismic API endpoint
 export const apiEndpoint = process.env.PRISMIC_API_URL
 
 // Access Token if the repository is not public
 // Generate a token in your dashboard and configure it here if your repository is private
-export const accessToken = process.env.PRISMIC_TOKEN
+//export const accessToken = process.env.PRISMIC_TOKEN
 
 // Client method to query documents from the Prismic repo
-export const client = Prismic.client(apiEndpoint, { accessToken })
+export const client = Prismic.client(apiEndpoint)
 
 export const linkResolver = (doc) => {
   if (doc) {

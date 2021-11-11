@@ -1,4 +1,4 @@
-import { Theme, ThemeUIContextValue, useThemeUI } from "theme-ui"
+import { Theme, ThemeUIContextValue, useThemeUI } from 'theme-ui'
 
 const makeTheme = <T extends Theme>(t: T) => t
 
@@ -8,7 +8,7 @@ interface ThemeContextValue extends Omit<ThemeUIContextValue, 'theme'> {
   theme: ThemeType
 }
 
-export const useTheme = (useThemeUI as unknown) as () => ThemeContextValue
+export const useTheme = useThemeUI as unknown as () => ThemeContextValue
 
 const theme = makeTheme({
   useCustomProperties: true,
@@ -65,10 +65,10 @@ const theme = makeTheme({
     },
   },
   fonts: {
-    body: "'CeraRoundPro', 'Lato', 'Inter', sans-serif",
-    light: "'CeraRoundPro-Light', 'Lato', 'Inter', sans-serif",
-    medium: "'CeraRoundPro-Medium', 'Lato', 'Inter', sans-serif",
-    heading: "'CeraRoundPro-Bold', 'Lato', 'Inter', sans-serif",
+    body: "'Times New Roman', 'Lato', 'Inter', sans-serif",
+    light: "'Times New Roman', 'Lato', 'Inter', sans-serif",
+    medium: "'Times New Roman', 'Lato', 'Inter', sans-serif",
+    heading: "'Times New Roman', 'Lato', 'Inter', sans-serif",
     code: "'Fira Code', monospace",
     title: "'Lato', 'Inter', sans-serif",
   },

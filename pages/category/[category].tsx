@@ -1,8 +1,8 @@
 import { client } from '../../prismic-configuration'
-import Prismic from 'prismic-javascript'
+import Prismic from '@prismicio/client'
 import { Layout, Caption, Listing } from './../../components'
 
-export default function Category({articles, category}) {
+export default function Category({ articles, category }) {
   return (
     <Layout page='Category' title={category}>
       <Caption name={category} type='category' />
@@ -11,15 +11,16 @@ export default function Category({articles, category}) {
   )
 }
 
-export async function getStaticProps({params}) {
-  const {category} = params
-  const {results} = await client.query(
+export async function getStaticProps({ params }) {
+  const { category } = params
+  const { results } = await client.query(
     Prismic.Predicates.at('document.type', 'article')
   )
 
   // filter articles based on the category slug
-  const articles = results.filter(({data}) => {
-    const categories = data.categories && data.categories.map(({category}) => category.slug)
+  const articles = results.filter(({ data }) => {
+    const categories =
+      data.categories && data.categories.map(({ category }) => category.slug)
     return categories.includes(category)
   })
 
@@ -32,16 +33,16 @@ export async function getStaticProps({params}) {
 }
 
 export async function getStaticPaths() {
-  const {results} = await client.query(
+  const { results } = await client.query(
     Prismic.Predicates.at('document.type', 'article')
   )
 
-  const categories = results && results.reduce(
-    (acc, curr) => acc.concat(curr.data.categories),
+  const categories =
+    (results &&
+      results.reduce((acc, curr) => acc.concat(curr.data.categories), [])) ||
     []
-  ) || []
 
-  const paths = categories.map(({category}) => ({
+  const paths = categories.map(({ category }) => ({
     params: {
       category: category.slug,
     },

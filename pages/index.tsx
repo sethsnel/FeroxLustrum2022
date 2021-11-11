@@ -1,6 +1,6 @@
-import Prismic from 'prismic-javascript'
-import {client} from '../prismic-configuration'
-import {Layout, Caption, Listing} from './../components'
+import Prismic from '@prismicio/client'
+import { client } from '../prismic-configuration'
+import { Layout, Caption, Listing } from './../components'
 
 export default function Home(props) {
   return (
@@ -14,7 +14,7 @@ export default function Home(props) {
 export async function getStaticProps() {
   const articles = await client.query(
     Prismic.Predicates.at('document.type', 'article'),
-    {orderings: '[my.article.created desc]', pageSize: 10, page: 1}
+    { orderings: '[my.article.created desc]', pageSize: 10, page: 1 }
   )
   return {
     props: {

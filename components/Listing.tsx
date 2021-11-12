@@ -29,7 +29,7 @@ const Listing = ({ articles }: ListingProps) => {
     grid-gap: 1.25rem;
     justify-content: center;
     margin: auto;
-    @media (max-width: ${theme.breakpoints[0]}) {
+    @media (max-width: ${theme.breakpoints[1]}) {
       grid-template-columns: 1fr;
     }
   `

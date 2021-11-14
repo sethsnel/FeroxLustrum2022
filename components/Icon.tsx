@@ -4,9 +4,8 @@ import {
   GrFacebookOption,
   GrTwitter,
   GrGithub,
-  GrInstagram,
-  GrTictok,
 } from 'react-icons/gr'
+import { FaTiktok, FaInstagram } from 'react-icons/fa'
 import { FiCodepen } from 'react-icons/fi'
 import { IoIosGlobe, IoLogoWhatsapp } from 'react-icons/io'
 
@@ -37,7 +36,7 @@ const Icon = ({ name, url, style }: IconProps) => {
         )
       case 'Instagram':
         return (
-          <GrInstagram
+          <FaInstagram
             sx={{
               ...style,
               '&:hover': {
@@ -48,7 +47,7 @@ const Icon = ({ name, url, style }: IconProps) => {
         )
       case 'Tiktok':
         return (
-          <GrTictok
+          <FaTiktok
             sx={{
               ...style,
               '&:hover': {

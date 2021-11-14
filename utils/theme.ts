@@ -18,10 +18,10 @@ const theme = makeTheme({
   space: [0, 4, 8, 16, 32, 64, 128, 256, 512],
   borders: [0],
   colors: {
-    text: '#000',
+    text: 'rgba(245,245,245,0.9)',
     background: '#000',
     primary: 'rgba(168,74,92,0.8)',
-    secondary: '#fefefe',
+    secondary: 'rgba(245,245,245,0.9)',
     muted: '#000',
     highlight: '#9f9f9f',
     gray: '#6c6c6c',

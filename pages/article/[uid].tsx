@@ -264,7 +264,7 @@ export async function getStaticProps({ params, preview = null, previewData }) {
   )
   // get authorID
   const authorId = await article?.author?.id
-  console.info(authorId)
+
   // fetch author data based on authorId
   if (authorId) {
     const { data: author } = await client.getByID(

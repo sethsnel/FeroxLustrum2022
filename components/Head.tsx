@@ -71,6 +71,7 @@ const Head = ({
         />
         <link rel='manifest' href='/manifest.webmanifest' />
         <link rel='mask-icon' href='/safari-pinned-tab.svg' color='#333333' />
+        <link rel='preload' as='image' href='/bg-min.jpg' />
         <meta name='msapplication-TileColor' content='#00aba9' />
         <meta name='theme-color' content='#333' />
         <title>{pageTitle}</title>

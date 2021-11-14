@@ -1,13 +1,11 @@
 import { ReactElement } from 'react'
 import { IoIosArrowDropupCircle } from 'react-icons/io'
-import Image from 'next/image'
 
 import Head from '../components/Head'
 import Header from '../components/Header'
 import Footer from './Footer'
 import siteUrl from '../utils/siteUrl'
 import routeURL from './../utils/routeURL'
-import backgroundImage from '../public/bg-min.jpg'
 
 export type LayoutProps = {
   title?: string
@@ -39,16 +37,6 @@ const Layout = ({
         //image={siteImage}
       ></Head>
       <div className='content-wrapper'>
-        <div className='backgroundImage'>
-          <Image
-            src={backgroundImage}
-            layout='fill'
-            objectFit='cover'
-            objectPosition='center'
-            priority
-          />
-        </div>
-
         <Header />
         <main className='main'>{children}</main>
         <Footer />

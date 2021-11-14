@@ -55,6 +55,7 @@ const Listing = ({ articles }: ListingProps) => {
           })
           .map((article) => (
             <NextLink
+              key={article.uid}
               href={hrefResolver(article)}
               as={linkResolver(article)}
               passHref

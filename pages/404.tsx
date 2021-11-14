@@ -14,13 +14,13 @@ export default function Custom404() {
           flexDirection: 'column',
           textAlign: 'center',
           fontSize: [3, 4],
-        }}>
-        <p>You just hit a route that doesn&#39;t exist... the sadness.</p>
+        }}
+      >
+        <p>Deze pagina bestaat niet!</p>
         <picture className='pnf-image'>
-          <source type='image/webp' srcSet='/page-not-found.webp' />
-          <source type='image/jpeg' srcSet='/page-not-found.jpg' />
+          <source type='image/png' srcSet='/icons/icon-512x512.png' />
           <img
-            src='/page-not-found.jpg'
+            src='/icons/icon-512x512.png'
             alt='404 Page Not Found'
             className='pnf-image'
           />

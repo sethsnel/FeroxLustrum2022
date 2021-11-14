@@ -11,15 +11,17 @@ interface ThemeContextValue extends Omit<ThemeUIContextValue, 'theme'> {
 export const useTheme = useThemeUI as unknown as () => ThemeContextValue
 
 const theme = makeTheme({
-  useCustomProperties: true,
-  useColorSchemeMediaQuery: true,
-  useLocalStorage: true,
+  config: {
+    useCustomProperties: true,
+    useColorSchemeMediaQuery: true,
+    useLocalStorage: true,
+  },
   breakpoints: ['30em', '47em', '64em', '100em'],
   space: [0, 4, 8, 16, 32, 64, 128, 256, 512],
   borders: [0],
   colors: {
     text: 'rgba(245,245,245,0.9)',
-    background: '#000',
+    background: '#a0a0a0',
     primary: 'rgba(168,74,92,0.8)',
     secondary: 'rgba(245,245,245,0.9)',
     muted: '#000',

@@ -1,5 +1,4 @@
 import Image from 'next/image'
-import PropTypes from 'prop-types'
 
 import { IImage } from '../schemas'
 
@@ -19,19 +18,18 @@ const Banner = ({ image: { alt, url, dimensions } }: BannerProps) => {
         borderStyle: 'solid',
         borderColor: 'highlight',
         overflow: 'hidden',
-      }}>
-
-      {
-        (url && dimensions?.width) ?
-          (<Image
-            src={url}
-            alt={alt}
-            title={alt}
-            layout='responsive'
-            width={dimensions.width}
-            height={dimensions.height}
-          />) : undefined
-      }
+      }}
+    >
+      {url && dimensions?.width ? (
+        <Image
+          src={url}
+          alt={alt}
+          title={alt}
+          layout='responsive'
+          width={dimensions.width}
+          height={dimensions.height}
+        />
+      ) : undefined}
 
       <p
         sx={{
@@ -40,7 +38,8 @@ const Banner = ({ image: { alt, url, dimensions } }: BannerProps) => {
           pt: 2,
           fontFamily: 'heading',
           fontSize: [2, 3],
-        }}>
+        }}
+      >
         {alt}
       </p>
     </div>
@@ -56,10 +55,6 @@ Banner.defaultProps = {
       height: 0,
     },
   },
-}
-
-Banner.propTypes = {
-  image: PropTypes.object,
 }
 
 export default Banner

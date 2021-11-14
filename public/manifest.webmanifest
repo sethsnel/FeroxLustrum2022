@@ -4,7 +4,7 @@
   "description": "Alle feiten bij de hand over het Ferox lustrum weekend",
   "start_url": "/",
   "theme_color": "#e6005d",
-  "background_color": "#000",
+  "background_color": "#fefefe",
   "display": "standalone",
   "orientation": "potrait",
   "icons": [

@@ -4,19 +4,24 @@ import {
   GrFacebookOption,
   GrTwitter,
   GrGithub,
+  GrInstagram,
+  GrTictok,
 } from 'react-icons/gr'
-import {FiCodepen} from 'react-icons/fi'
-import {IoIosGlobe, IoLogoWhatsapp} from 'react-icons/io'
+import { FiCodepen } from 'react-icons/fi'
+import { IoIosGlobe, IoLogoWhatsapp } from 'react-icons/io'
 
-import {trackGAEvent} from '../utils/googleAnalytics'
+import { trackGAEvent } from '../utils/googleAnalytics'
+import { useTheme } from '../utils/theme'
 
 interface IconProps {
-  name: string,
-  url: string,
-  style: any,
+  name: string
+  url: string
+  style: any
 }
 
-const Icon = ({name, url, style}: IconProps) => {
+const Icon = ({ name, url, style }: IconProps) => {
+  const { theme } = useTheme()
+
   const renderIcon = () => {
     switch (name) {
       case 'Facebook':
@@ -26,6 +31,28 @@ const Icon = ({name, url, style}: IconProps) => {
               ...style,
               '&:hover': {
                 color: '#3b5998',
+              },
+            }}
+          />
+        )
+      case 'Instagram':
+        return (
+          <GrInstagram
+            sx={{
+              ...style,
+              '&:hover': {
+                color: theme.colors.secondary,
+              },
+            }}
+          />
+        )
+      case 'Tiktok':
+        return (
+          <GrTictok
+            sx={{
+              ...style,
+              '&:hover': {
+                color: theme.colors.secondary,
               },
             }}
           />
@@ -121,7 +148,8 @@ const Icon = ({name, url, style}: IconProps) => {
       title={name}
       onClick={() =>
         trackGAEvent('social icons', `clicked on ${name} link`, 'icon click')
-      }>
+      }
+    >
       {renderIcon()}
     </a>
   )

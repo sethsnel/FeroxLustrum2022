@@ -75,7 +75,7 @@ export default function Article({
             position: 'relative',
           }}
         >
-          <Themed.em
+          {/* <Themed.em
             title={formatDate(article.created)}
             aria-label={formatDate(article.created)}
           >
@@ -90,9 +90,9 @@ export default function Article({
               <FiClock style={{ marginBottom: '-0.15rem' }} />
               &nbsp;{article.read_time}&nbsp;min read
             </Themed.em>
-          ) : undefined}
-          <p sx={{ m: 0 }}>
-            <FiShare2
+          ) : undefined} */}
+          {/* <p sx={{ m: 0 }}> */}
+          {/* <FiShare2
               sx={{
                 fontSize: [3],
                 mx: 2,
@@ -104,9 +104,9 @@ export default function Article({
               )} article on different platforms.`}
               onMouseEnter={toggleShareIcons}
               onClick={toggleShareIcons}
-            />
-            {/* Share */}
-            {showShareIcons && (
+            /> */}
+          {/* Share */}
+          {/* {showShareIcons && (
               <div
                 sx={{
                   position: 'absolute',
@@ -125,12 +125,12 @@ export default function Article({
                   hideShareText={true}
                 />
               </div>
-            )}
-          </p>
+            )} */}
+          {/* </p> */}
         </div>
 
         {/* categories */}
-        <div
+        {/* <div
           sx={{
             display: 'flex',
             flexFlow: 'row wrap',
@@ -165,19 +165,21 @@ export default function Article({
           {RichText.asText(article.excerpt)}
         </Themed.p>
 
-        <Banner image={article.article_image} />
+        <Banner image={article.article_image} /> */}
 
         {/* slices */}
-        <SliceMachine slices={article.body} />
+        <div className='article-wrapper'>
+          <SliceMachine slices={article.body} />
+        </div>
 
-        {article.modified ? (
+        {/* {article.modified ? (
           <Themed.em sx={{ color: 'gray' }}>
             Bijgewerkt op {formatDate(article.modified)}
           </Themed.em>
-        ) : undefined}
+        ) : undefined} */}
 
         {/* tags */}
-        <div
+        {/* <div
           sx={{
             display: 'flex',
             flexFlow: 'row wrap',
@@ -190,10 +192,10 @@ export default function Article({
             tags.map((tag, index) => {
               return <Chip name={tag} slug={tag} type='tag' key={index} />
             })}
-        </div>
+        </div> */}
 
         {/* Share */}
-        <Share articleURL={URL} articleName={RichText.asText(article.title)} />
+        {/* <Share articleURL={URL} articleName={RichText.asText(article.title)} />
 
         {author && <Author author={author} />}
 
@@ -204,7 +206,7 @@ export default function Article({
             tags={tags}
             related={articles}
           />
-        )}
+        )} */}
 
         {/* <p style={{ textAlign: 'center' }}>
           <button

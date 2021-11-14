@@ -11,6 +11,7 @@ import { useTheme } from '../utils/theme'
 import { IArticle } from '../schemas'
 
 import Chip from './Chip'
+import dayjs from 'dayjs'
 
 interface ListingProps {
   articles: {
@@ -25,7 +26,7 @@ const Listing = ({ articles }: ListingProps) => {
   const GridLayout = styled.div`
     display: grid;
     grid-template-columns: repeat(auto-fit, 325px);
-    grid-template-rows: auto;
+    grid-auto-rows: 200px;
     grid-gap: 1.25rem;
     justify-content: center;
     margin: auto;
@@ -35,35 +36,52 @@ const Listing = ({ articles }: ListingProps) => {
   `
 
   const ArticleCard = styled.div`
-    display: grid;
-    grid-template-columns: 325px;
-    grid-template-rows: 200px auto;
-    grid-gap: 0;
+    display: flex;
+    width: 325px;
     margin: 0 auto;
-    border-radius: 25px;
-    box-shadow: inset -5px -5px 12px ${theme.colors.shade1},
-      inset 5px 5px 12px ${theme.colors.shade2};
+    border-radius: 10px;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    background: ${theme.colors.primary};
   `
 
   return (
     <GridLayout>
       {articles &&
-        articles.map((article) => (
-          <ArticleCard
-            aria-label={`Read article ${article.uid}`}
-            title={article.uid}
-            key={article.uid}
-          >
-            {article.data.article_image &&
+        articles
+          .sort((a1, a2) => {
+            return dayjs(a1.data.created).diff(dayjs(a2.data.created))
+          })
+          .map((article) => (
+            <NextLink
+              href={hrefResolver(article)}
+              as={linkResolver(article)}
+              passHref
+            >
+              <ArticleCard
+                aria-label={`Read article ${article.uid}`}
+                title={article.uid}
+                key={article.uid}
+              >
+                {/* {article.data.article_image &&
             article.data.article_image?.dimensions ? (
-              <div style={{ overflow: 'hidden' }}>
+              <div
+                style={{
+                  overflow: 'hidden',
+                  gridColumn: '1 / span 1',
+                  gridRow: '1 / span 2',
+                  borderRadius: '10px',
+                  background: 'rgba(168,74,92,0.8)',
+                }}
+              >
                 <NextLink
                   href={hrefResolver(article)}
                   as={linkResolver(article)}
                   passHref
                 >
                   <a>
-                    <Image
+                    {/* <Image
                       src={article.data.article_image.url}
                       alt={article.data.article_image.alt}
                       title={article.data.article_image.alt}
@@ -75,156 +93,50 @@ const Listing = ({ articles }: ListingProps) => {
                   </a>
                 </NextLink>
               </div>
-            ) : undefined}
-            <div
-              sx={{
-                px: 3,
-                py: 2,
-
-                '@media (max-width: 30rem)': {
-                  px: 3,
-                },
-              }}
-            >
-              <h2
-                sx={{
-                  m: 0,
-                  pt: 0,
-                  minHeight: '5rem',
-                  fontSize: [2, 3],
-                  '@media (max-width: 30rem)': {
-                    pt: 0,
-                    height: 'auto',
-                  },
-                }}
-              >
-                <NextLink
-                  href={hrefResolver(article)}
-                  as={linkResolver(article)}
-                  passHref
-                >
-                  <a
+            ) : undefined} */}
+                <div>
+                  <h2
                     sx={{
-                      color: 'inherit',
-                      textDecoration: 'none',
-                      ':hover,:focus': {
-                        color: 'secondary',
-                        textDecoration: 'underline',
-                        cursor: 'pointer',
+                      m: 0,
+                      pt: 0,
+                      fontSize: [3, 4],
+                      '@media (max-width: 30rem)': {
+                        pt: 0,
+                        height: 'auto',
                       },
                     }}
-                    onClick={() =>
-                      trackGAEvent(
-                        'home',
-                        `clicked on ${article.uid} article title`,
-                        'text click'
-                      )
-                    }
-                    rel='noreferrer noopener'
                   >
-                    {RichText.asText(article.data.title)}
-                  </a>
-                </NextLink>
-              </h2>
-              <p
-                sx={{
-                  my: 0,
-                  fontSize: [1, 2],
-                  height: '5.5rem',
-                  '@media screen and (max-width: 30rem)': {
-                    height: 'auto',
-                  },
-                }}
-              >
-                {truncateText(`${RichText.asText(article.data.excerpt)}`)}&nbsp;
-                <NextLink
-                  href={hrefResolver(article)}
-                  as={linkResolver(article)}
-                  passHref
-                >
-                  <a
-                    sx={{ variant: 'styles.a' }}
-                    aria-label={`Read the article on ${RichText.asText(
-                      article.data.title
-                    )}`}
-                    title={`Read the article on ${RichText.asText(
-                      article.data.title
-                    )}`}
-                    onClick={() =>
-                      trackGAEvent(
-                        'home',
-                        `clicked on ${article.uid} read full article`,
-                        'link click'
-                      )
-                    }
-                    rel='noreferrer noopener'
-                  >
-                    Lees meer
-                  </a>
-                </NextLink>
-              </p>
-              <div
-                sx={{
-                  display: 'flex',
-                  flexFlow: 'row wrap',
-                  justifyContent: 'flex-start',
-                  alignItems: 'center',
-                  margin: '0 auto 0 -0.25rem',
-                }}
-              >
-                {article.data.categories &&
-                  article.data.categories.map(({ category }, index) => {
-                    return (
-                      category?.slug && (
-                        <Chip
-                          name={category.slug}
-                          slug={category.slug}
-                          type='category'
-                          page='listing'
-                          key={index}
-                          onClick={() =>
-                            trackGAEvent(
-                              'home',
-                              `clicked on ${category.slug}`,
-                              'chip click'
-                            )
-                          }
-                        />
-                      )
-                    )
-                  })}
-              </div>
-              <p
-                sx={{
-                  fontSize: 0,
-                  mb: 1,
-                  py: 1,
-                }}
-              >
-                <em
-                  title={`Article posted on ${formatDate(
-                    article.data.created
-                  )}`}
-                  aria-label={`Article posted on ${formatDate(
-                    article.data.created
-                  )}`}
-                >
-                  {formatDate(article.data.created)}
-                </em>
-
-                {article.data.read_time ? (
-                  <>
-                    <span sx={{ mx: 2, fontSize: '10px' }}>|</span>
-                    <em title='Leestijd' aria-label='Leestijd'>
-                      <FiClock style={{ marginBottom: '-0.15rem' }} />
-                      &nbsp;{article.data.read_time}&nbsp;min read
-                    </em>
-                  </>
-                ) : undefined}
-              </p>
-            </div>
-          </ArticleCard>
-        ))}
+                    <NextLink
+                      href={hrefResolver(article)}
+                      as={linkResolver(article)}
+                      passHref
+                    >
+                      <a
+                        sx={{
+                          color: 'secondary',
+                          textDecoration: 'none',
+                          ':hover,:focus': {
+                            textDecoration: 'underline',
+                            cursor: 'pointer',
+                          },
+                        }}
+                        onClick={() =>
+                          trackGAEvent(
+                            'home',
+                            `clicked on ${article.uid} article title`,
+                            'text click'
+                          )
+                        }
+                        rel='noreferrer noopener'
+                      >
+                        {RichText.asText(article.data.title)}
+                      </a>
+                    </NextLink>
+                  </h2>
+                </div>
+              </ArticleCard>
+            </NextLink>
+          ))}
     </GridLayout>
   )
 }

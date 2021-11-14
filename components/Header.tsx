@@ -12,10 +12,7 @@ const Header = () => {
 
   return (
     <Headroom disableInlineStyles upTolerance={10} downTolerance={10}>
-      <header
-        style={{ background: `${theme.colors.muted}` }}
-        className='header'
-      >
+      <header className='header'>
         <div className='header-content'>
           <div>
             <Themed.h1 style={{ margin: '0' }}>
@@ -24,6 +21,9 @@ const Header = () => {
                   style={{
                     textDecoration: 'none',
                     letterSpacing: '0.15rem',
+                  }}
+                  sx={{
+                    color: 'primary',
                   }}
                   onClick={() =>
                     trackGAEvent('logo', `clicked on site logo`, 'link click')

@@ -2,11 +2,7 @@ import Icon from './Icon'
 
 const Footer = () => {
   return (
-    <footer
-      sx={{
-        bg: 'muted',
-      }}
-    >
+    <footer>
       <div className='footer'>
         {/* <div className="links-row">
           <div>
@@ -53,8 +49,8 @@ const Footer = () => {
 
         <div className='social-row'>
           <Icon
-            name='Facebook'
-            url='https://facebook.com'
+            name='Instagram'
+            url='https://instagram.com/ferox_nsl'
             style={{
               color: 'primary',
               fontSize: '1.75rem',
@@ -62,28 +58,18 @@ const Footer = () => {
           />
 
           <Icon
-            name='Twitter'
-            url='https://twitter.com/iamsainikhil12'
+            name='Tiktok'
+            url='https://vm.tiktok.com/ZM8VvBdYP/'
             style={{
               color: 'primary',
-              fontSize: '1.5rem',
-            }}
-          />
-
-          <Icon
-            name='LinkedIn'
-            url=''
-            style={{
-              color: 'primary',
-              fontSize: '1.70rem',
-              marginBottom: '0.25rem',
+              fontSize: '1.75rem',
             }}
           />
         </div>
 
-        <p style={{ textAlign: 'center', marginTop: '0.5rem' }}>
+        {/* <p style={{ textAlign: 'center', marginTop: '0.5rem' }}>
           © {new Date().getFullYear()}{' '}
-        </p>
+        </p> */}
       </div>
     </footer>
   )

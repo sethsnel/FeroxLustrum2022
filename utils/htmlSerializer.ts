@@ -5,11 +5,17 @@ import { linkResolver } from '../prismic-configuration'
 
 // -- Function to add unique key to props
 const propsWithUniqueKey = function (props, key) {
-  return Object.assign(props || {}, {key})
+  return Object.assign(props || {}, { key })
 }
 
 // -- HTML Serializer
-const htmlSerializer = function (type, element, content, children, key): ReactNode {
+const htmlSerializer = function (
+  type,
+  element,
+  content,
+  children,
+  key
+): ReactNode {
   var props = {}
 
   switch (type) {
@@ -69,9 +75,9 @@ const htmlSerializer = function (type, element, content, children, key): ReactNo
         : null
       const linkTarget =
         element.linkTo && element.linkTo.target
-          ? {target: element.linkTo.target}
+          ? { target: element.linkTo.target }
           : {}
-      const linkRel = linkTarget.target ? {rel: 'noopener'} : {}
+      const linkRel = linkTarget.target ? { rel: 'noopener' } : {}
       const img = React.createElement('img', {
         src: element.url,
         alt: element.alt || '',
@@ -79,13 +85,13 @@ const htmlSerializer = function (type, element, content, children, key): ReactNo
       return React.createElement(
         'p',
         propsWithUniqueKey(
-          {className: [element.label || '', 'block-img'].join(' ')},
+          { className: [element.label || '', 'block-img'].join(' ') },
           key
         ),
         linkUrl
           ? React.createElement(
               'a',
-              Object.assign({href: linkUrl}, linkTarget, linkRel),
+              Object.assign({ href: linkUrl }, linkTarget, linkRel),
               img
             )
           : img
@@ -98,10 +104,10 @@ const htmlSerializer = function (type, element, content, children, key): ReactNo
           'data-oembed-type': element.oembed.type,
           'data-oembed-provider': element.oembed.provider_name,
         },
-        element.label ? {className: element.label} : {}
+        element.label ? { className: element.label } : {}
       )
       const embedHtml = React.createElement('div', {
-        dangerouslySetInnerHTML: {__html: element.oembed.html},
+        dangerouslySetInnerHTML: { __html: element.oembed.html },
       })
       return React.createElement(
         'div',
@@ -111,9 +117,9 @@ const htmlSerializer = function (type, element, content, children, key): ReactNo
 
     case Elements.hyperlink:
       const targetAttr = element.data.target
-        ? {target: element.data.target}
-        : {}
-      const relAttr = element.data.target ? {rel: 'noreferrer noopener'} : {}
+        ? { target: element.data.target }
+        : { target: '_blank' }
+      const relAttr = element.data.target ? { rel: 'noreferrer noopener' } : {}
       props = Object.assign(
         {
           href: element.data.url || linkResolver(element.data),
@@ -125,7 +131,7 @@ const htmlSerializer = function (type, element, content, children, key): ReactNo
 
     case Elements.label: // Label
       props = element.data
-        ? Object.assign({}, {className: element.data.label})
+        ? Object.assign({}, { className: element.data.label })
         : {}
       return React.createElement(
         'span',

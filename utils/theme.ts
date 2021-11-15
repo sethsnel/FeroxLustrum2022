@@ -21,7 +21,7 @@ const theme = makeTheme({
   borders: [0],
   colors: {
     text: 'rgba(245,245,245,0.9)',
-    background: 'rgba(150,150,150,0.6)',
+    background: 'rgba(220,220,220,0.7)',
     primary: 'rgba(168,74,92,0.8)',
     secondary: 'rgba(245,245,245,0.9)',
     muted: '#000',
@@ -160,6 +160,7 @@ const theme = makeTheme({
       textDecoration: 'underline',
       '&:hover': {
         color: 'secondary',
+        backgroundColor: 'primary',
         textDecoration: 'none',
         cursor: 'pointer',
       },

@@ -15,13 +15,13 @@ const Header = () => {
       <header className='header'>
         <div className='header-content'>
           <div>
-            <Themed.h1 style={{ margin: '0', padding: '0.2rem 2.5rem 0.2rem 0.2rem' }} sx={{ background: theme.colors.background }}>
+            <Themed.h1 style={{ margin: '0', padding: '0 2.5rem 0 0' }} sx={{ background: theme.colors.background }}>
               <NextLink href='/' passHref>
                 <Themed.a
                   style={{
                     textDecoration: 'none',
                     letterSpacing: '0.15rem',
-                    padding: '0.1em 0',
+                    padding: '0.1em',
                   }}
                   sx={{
                     color: 'primary',

@@ -6,6 +6,7 @@ import Header from '../components/Header'
 import Footer from './Footer'
 import siteUrl from '../utils/siteUrl'
 import routeURL from './../utils/routeURL'
+import { useTheme } from '../utils/theme'
 
 export type LayoutProps = {
   title?: string
@@ -25,6 +26,7 @@ const Layout = ({
   children,
 }: LayoutProps) => {
   const URL = siteUrl(pathUrl || routeURL())
+  const { theme } = useTheme()
   //const siteImage = image || siteUrl('/site_image.png')
   //console.info(page)
   return (
@@ -42,6 +44,9 @@ const Layout = ({
         <Footer />
         <IoIosArrowDropupCircle
           className='scroll-top-icon'
+          sx={{
+            color: theme.colors.primary,
+          }}
           onClick={() => {
             scrollTo({
               top: 0,

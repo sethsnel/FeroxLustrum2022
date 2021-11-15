@@ -32,6 +32,7 @@ const Listing = ({ articles }: ListingProps) => {
     margin: auto;
     @media (max-width: ${theme.breakpoints[0]}) {
       grid-template-columns: 1fr;
+      grid-auto-rows: 125px;
     }
   `
 
@@ -44,6 +45,9 @@ const Listing = ({ articles }: ListingProps) => {
     align-items: center;
     cursor: pointer;
     background: ${theme.colors.primary};
+    @media (max-width: ${theme.breakpoints[0]}) {
+      width: 250px;
+    }
   `
 
   return (

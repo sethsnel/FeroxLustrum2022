@@ -243,10 +243,6 @@ blockquote {
     width: 100%;
   }
 
-  .header-content {
-    @extend %container;
-  }
-
   .main {
     @extend %container;
     margin: 1rem auto 2rem auto;
@@ -268,6 +264,13 @@ blockquote {
     margin-bottom: 1rem;
     font-size: 2rem;
     cursor: pointer;
+    &:hover {
+      transform: scale(1.2);
+      transition: all 0.1s ease-in-out 0.2s;
+    }
+  }
+
+  .icon {
     &:hover {
       transform: scale(1.2);
       transition: all 0.1s ease-in-out 0.2s;

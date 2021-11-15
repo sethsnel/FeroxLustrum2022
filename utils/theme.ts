@@ -21,7 +21,7 @@ const theme = makeTheme({
   borders: [0],
   colors: {
     text: 'rgba(245,245,245,0.9)',
-    background: '#a0a0a0',
+    background: 'rgba(150,150,150,0.6)',
     primary: 'rgba(168,74,92,0.8)',
     secondary: 'rgba(245,245,245,0.9)',
     muted: '#000',

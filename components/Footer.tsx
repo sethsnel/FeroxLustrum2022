@@ -53,7 +53,7 @@ const Footer = () => {
             url='https://instagram.com/ferox_nsl'
             style={{
               color: 'primary',
-              fontSize: '1.75rem',
+              fontSize: '2rem',
             }}
           />
 
@@ -62,7 +62,7 @@ const Footer = () => {
             url='https://vm.tiktok.com/ZM8VvBdYP/'
             style={{
               color: 'primary',
-              fontSize: '1.75rem',
+              fontSize: '2rem',
             }}
           />
         </div>

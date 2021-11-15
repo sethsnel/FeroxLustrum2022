@@ -37,22 +37,18 @@ const Icon = ({ name, url, style }: IconProps) => {
       case 'Instagram':
         return (
           <FaInstagram
+            className="icon"
             sx={{
-              ...style,
-              '&:hover': {
-                color: theme.colors.secondary,
-              },
+              ...style
             }}
           />
         )
       case 'Tiktok':
         return (
           <FaTiktok
+            className="icon"
             sx={{
-              ...style,
-              '&:hover': {
-                color: theme.colors.secondary,
-              },
+              ...style
             }}
           />
         )

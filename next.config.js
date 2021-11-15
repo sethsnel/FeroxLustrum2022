@@ -1,4 +1,5 @@
 const withPWA = require('next-pwa')
+const cache = require('./cache')
 
 module.exports = withPWA({
   // for more PWA options
@@ -9,6 +10,7 @@ module.exports = withPWA({
     scope: '/',
     sw: 'service-worker.js',
     dest: 'public',
+    runtimeCaching: cache
   },
   // To enable image optimization for image hosted on external website
   // mention the external website domain below

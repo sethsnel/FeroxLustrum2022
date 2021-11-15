@@ -22,7 +22,7 @@ const Head = ({
   const prismicRepo = process.env.NEXT_PUBLIC_PRISMIC_REPO
   //const twitterHandle = '@iamsainikhil12'
   const siteName = 'Ferox Lustrumweekend'
-  const pageTitle = `Ferox Lustrum | ${title}`
+  const pageTitle = `Ferox Lustrum`
   const metaDescription = description || 'Ferox Lustrumweekend'
   return (
     <>

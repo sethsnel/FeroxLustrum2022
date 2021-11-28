@@ -70,10 +70,10 @@ const Head = ({
           href='/favicon-16x16.png'
         />
         <link rel='manifest' href='/manifest.webmanifest' />
-        <link rel='mask-icon' href='/safari-pinned-tab.svg' color='#333333' />
+        <link rel='mask-icon' href='/safari-pinned-tab.svg' color='#e6005d' />
         <link rel='preload' as='image' href='/bg-min.jpg' />
-        <meta name='msapplication-TileColor' content='#00aba9' />
-        <meta name='theme-color' content='#333' />
+        <meta name='msapplication-TileColor' content='#e6005d' />
+        <meta name='theme-color' content='#e6005d' />
         <title>{pageTitle}</title>
         {/* prismic preview toolbar */}
         <script

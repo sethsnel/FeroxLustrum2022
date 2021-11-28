@@ -27,7 +27,7 @@ const Layout = ({
 }: LayoutProps) => {
   const URL = siteUrl(pathUrl || routeURL())
   const { theme } = useTheme()
-  //const siteImage = image || siteUrl('/site_image.png')
+  const siteImage = image || siteUrl('/site_image.png')
   //console.info(page)
   return (
     <>
@@ -36,7 +36,7 @@ const Layout = ({
         page={page}
         title={title}
         description={description}
-        //image={siteImage}
+        image={siteImage}
       ></Head>
       <div className='content-wrapper'>
         <Header />

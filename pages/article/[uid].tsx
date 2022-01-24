@@ -282,6 +282,7 @@ export async function getStaticProps({ params, preview = null, previewData }) {
 
   return {
     props: { uid, tags, article, preview },
+    revalidate: 10,
   }
 }
 
@@ -302,6 +303,6 @@ export async function getStaticPaths() {
 
   return {
     paths,
-    fallback: false,
+    fallback: 'blocking',
   }
 }

@@ -16,7 +16,7 @@ const Caption = ({ name, type }: CaptionProps) => {
         }}
       >
         {type === 'articles' ? undefined : (
-          //   <Themed.em sx={{ fontSize: '3em' }}>Ferox Lustrumweekend</Themed.em>
+          //   <Themed.em sx={{ fontSize: '3em' }}>Ferox Lustrum</Themed.em>
           <Themed.em>
             Gerelateerd aan: <strong>{name}</strong> {type}.
           </Themed.em>

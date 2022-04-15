@@ -31,7 +31,7 @@ const Header = () => {
                   }
                   rel='noreferrer noopener'
                 >
-                  Ferox Lustrumweekend
+                  Ferox Lustrum
                 </Themed.a>
               </NextLink>
             </Themed.h1>

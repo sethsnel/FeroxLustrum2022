@@ -21,9 +21,9 @@ const Head = ({
 }: HeadProps) => {
   const prismicRepo = process.env.NEXT_PUBLIC_PRISMIC_REPO
   //const twitterHandle = '@iamsainikhil12'
-  const siteName = 'Ferox Lustrumweekend'
+  const siteName = 'Ferox Lustrum'
   const pageTitle = `Ferox Lustrum`
-  const metaDescription = description || 'Ferox Lustrumweekend'
+  const metaDescription = description || 'Ferox Lustrum'
   return (
     <>
       <GoogleFonts href='https://fonts.googleapis.com/css2?family=Damion&family=Fira+Code&family=Lato:ital,wght@0,400;0,700;1,300&display=swap' />
